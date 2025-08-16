@@ -2,109 +2,124 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        secondLargest();
-    }
+        //Question1
+        int[] arr = {12, 7, 5, 19, 7, 3, 15, 7, 10, 7};
+        int sum = 0;
+        double avg = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        System.out.println("Sum " + sum);
+        System.out.println("Average " + (double) sum / arr.length);
 
-        public static void secondLargest() {
-        int[] arr = {12, 5, 7, 3, 9, 15, 1};
-        int max = Integer.MIN_VALUE;
-        int max2 = Integer.MIN_VALUE;
-        for (int num : arr) {
-            if (num > max) {
-                max2 = max;
-                max = num;
-            } else if (num > max2 && num != max) {
-                max2 = num;
+
+        //Question2
+        int minValue = arr[0];
+        int maxValue = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > maxValue) {
+                maxValue = arr[i];
+            }
+            if (arr[i] < minValue) {
+                minValue = arr[i];
             }
         }
-        if (max2 == Integer.MIN_VALUE) {
-            System.out.println("No second largest value exists.");
-        } else {
-            System.out.println("Largest: " + max);
-            System.out.println("Second Largest: " + max2);
+        System.out.println("Minimum value: " + minValue);
+        System.out.println("Maximum value: " + maxValue);
+
+
+        //Question3
+        for (int i = 0; i < arr.length / 2; i++) {
+            int revPos = arr.length - 1 - i;
+            int temp = arr[revPos];
+            arr[revPos] = arr[i];
+            arr[i] = temp;
         }
-    }
+        System.out.println("Reversed array: " + java.util.Arrays.toString(arr));
 
 
-    public static void studentGrades() {
-        int[][] grades = {
-                {85, 90, 50, 90},
-                {50, 40, 98, 67},
-                {99, 100, 25, 30},
-                {88, 58, 45, 48}
+        //Question4
+        int num = 7;
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == num) {
+                count++;
+            }
+        }
+        System.out.println("Number " + num + " appears " + count + " times in the array.");
+
+
+
+
+        //Question5
+        int[][] matrix1 = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
         };
 
-        // Print all the array
-        for (int i = 0; i < grades.length; i++) {
-            System.out.println();
-            for (int j = 0; j < grades[i].length; j++) {
-                System.out.print(grades[i][j] + ",");
+        int[][] matrix2 = {
+                {9, 8, 7},
+                {6, 5, 4},
+                {3, 2, 1}
+        };
+
+        int matrixRow = matrix1.length;
+        int matrixCol = matrix1[0].length;
+
+        int[][] sumMatrix = new int[matrixRow][matrixCol];
+
+        for (int i = 0; i < matrixRow; i++) {
+            for (int j = 0; j < matrixCol; j++) {
+                sumMatrix[i][j] = matrix1[i][j] + matrix2[i][j];
             }
         }
-        System.out.println();
 
-        //Print the avg for each student
-        System.out.println();
-        for (int i = 0; i < grades.length; i++) {
-            float gradeAvg = 0f;
-            float gradeSum = 0f;
-            for (int j = 0; j < grades[i].length; j++) {
-                gradeSum += grades[i][j];
+        System.out.println("Sum of matrices:");
+        for (int i = 0; i < matrixRow; i++) {
+            for (int j = 0; j < matrixCol; j++) {
+                System.out.print(sumMatrix[i][j] + " ");
             }
-            gradeAvg = gradeSum / grades[i].length;
-            System.out.println(gradeAvg);
+            System.out.println(); // new line after each row
         }
 
 
-        //Print the avg for each Subject
-        System.out.println();
-        for (int j = 0; j < grades.length; j++) {
-            float lessonAvg = 0f;
-            float lessonSum = 0f;
-            for (int i = 0; i < grades.length; i++) {
-                lessonSum += grades[i][j];
+        //Question6
+        int[][] transposeMatrix= new int[matrixRow][matrixCol];
+        for (int i=0;i<matrixRow;i++){
+            for (int j=0;j<matrixCol;j++){
+                transposeMatrix[j][i]=sumMatrix[i][j];
             }
-            lessonAvg = lessonSum / grades[j].length;
-            System.out.println(lessonAvg);
         }
 
-        //Print the max of all grades
-        System.out.println();
-        int maxGrade = grades[0][0];
-        for (int i = 0; i < grades.length; i++) {
-            for (int j = 0; j < grades[i].length; j++) {
-                if (grades[i][j] > maxGrade) {
-                    maxGrade = grades[i][j];
-                }
-            }
-        }
-        System.out.println(maxGrade);
-        System.out.println();
 
-        //Diagonal Sum Calculation
-        if (grades.length == grades[0].length) {
-            int diagonalSum = 0;
-            for (int i = 0; i < grades.length; i++) {
-                diagonalSum += grades[i][i];
+
+        // Count the vowels and conso
+        String str = "GeorgiosManiasCCCCCC";
+        int countV = 0;
+        int countC = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if ((str.charAt(i) == 'a') || (str.charAt(i) == 'e') || (str.charAt(i) == 'o') || (str.charAt(i) == 'i') || (str.charAt(i) == 'u')) {
+                countV++;
+            } else {
+                countC++;
             }
-            System.out.println(diagonalSum);
-        } else {
-            System.out.println("Is not diagonal");
         }
+        System.out.println("The number of vowels is " + countV);
+        System.out.println(countC);
+
 
     }
-
-    public static void findPairsWithTargetSum() {
-        int[] array = {12, 5, 7, 3, 9, 15, 1, 20, 4, 8, 6, 11, 2, 14, 10, 13, 19, 17, 18, 16};
-        int target = 17;
-        for (int i = 0; i < array.length; i++) {
-            for (int j = i + 1; j < array.length; j++) {
-                if (array[i] + array[j] == target) {
-                    System.out.println(array[i] + ", " + array[j]);
-                }
-            }
-        }
-    }
-
-
 }
+
+
+
+/*
+1) Take N integers from the user, store them in an array, and find the sum and average.
+2) Find the largest and smallest element in an array.
+3) Reverse the elements of an array without using built-in reverse functions.
+4) Count how many times a given element appears in an array.
+5) Add two 3×3 matrices and display the sum in 2D matrix form. WITH SCANNER
+Find the transpose of a matrix and display it in 2D matrix form.
+
+ */
